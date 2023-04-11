@@ -1,0 +1,42 @@
+<div mat-dialog-title>
+    <h1>Task Form</h1>
+</div>
+<form [formGroup]="taskForm" (ngSubmit)="onFormSubmit()">
+    <div mat-dialog-content class="content">
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Name</mat-label>
+                <input matInput type="text" placeholder="" formControlName="name">
+            </mat-form-field>
+        </div>
+
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Description</mat-label>
+                <input matInput type="text" placeholder="" formControlName="description">
+            </mat-form-field>
+        </div>
+
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>JumpStart</mat-label>
+                <input matInput type="text" placeholder="" formControlName="jumpStart">
+            </mat-form-field>
+        </div>
+
+        <div class="row">
+            <mat-form-field>
+                <mat-label>To Do</mat-label>
+                <mat-select name="toDoReactiveVaraible" formControlName="toDoDTO">
+                    <mat-option *ngFor="let toDo of toDos" [value]="toDo">
+                    {{toDo.name}}
+                    </mat-option>
+                </mat-select>                                                                                   
+            </mat-form-field>
+        </div>
+    </div>
+    <div mat-dialog-actions class="action">
+        <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+        <button mat-raised-button color="primary" type="submit">{{data.data ? 'Update': 'Save'}}</button>
+    </div>
+</form>

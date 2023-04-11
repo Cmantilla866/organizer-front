@@ -1,0 +1,76 @@
+<div mat-dialog-title>
+    <h1>ToDo Form</h1>
+</div>
+<form [formGroup]="empForm" (ngSubmit)="onFormSubmit()">
+    <div mat-dialog-content class="content">
+        <div class="rows">
+            <div class="row-name">
+                <mat-form-field appearance="outline">
+                    <mat-label>Name</mat-label>
+                    <input matInput type="text" placeholder="" formControlName="name">
+                </mat-form-field>
+            </div>
+
+            <div class="row-number">
+                <mat-form-field appearance="outline">
+                    <mat-label>Priority</mat-label>
+                    <input matInput type="number" placeholder="" formControlName="priority">
+                </mat-form-field>
+            </div>
+
+            <div class="row-number">
+                <mat-form-field appearance="outline">
+                    <mat-label>MaxTime</mat-label>
+                    <input matInput type="number" placeholder="" formControlName="maxTime">
+                </mat-form-field>
+            </div>
+    
+            
+        </div>
+
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Description</mat-label>
+                <input matInput type="text" placeholder="" formControlName="description">
+            </mat-form-field>
+        </div>
+
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>JumpStart</mat-label>
+                <input matInput type="text" placeholder="" formControlName="jumpStart">
+            </mat-form-field>
+        </div>
+        
+        <!-- <div class="rows">
+            <div class="row">
+                <mat-checkbox (change)="onDeadlineChange()">Deadline</mat-checkbox>
+            </div>
+            <ng-container  *ngIf="showDeadline">
+                <div class="row">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Deadline</mat-label>
+                        <input matInput [matDatepicker]="picker" formControlName="deadline">
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </ng-container>
+        </div> -->
+        
+        <div class="row-category">
+            <mat-form-field>
+                <mat-label>Category</mat-label>
+                <mat-select name="categoryReactiveVaraible" formControlName="categoryDTO">
+                    <mat-option *ngFor="let category of categories" [value]="category">
+                    {{category.name}}
+                    </mat-option>
+                </mat-select>                                                                                   
+            </mat-form-field>
+        </div>
+    </div>
+    <div mat-dialog-actions class="action">
+        <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+        <button mat-raised-button color="primary" type="submit">{{data.data ? 'Update': 'Save'}}</button>
+    </div>
+</form>

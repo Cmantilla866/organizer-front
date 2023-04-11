@@ -1,0 +1,12 @@
+<div class="spinning-wheel">
+    <div *ngFor="let option of options; let i = index" class="wheel" [style.background-color]="option.color" [style.transform]="getWheelTransform(i)"></div>
+  </div>  
+  <button mat-raised-button (click)="stopWheel()">
+    STOP WHEEL
+  </button>
+  <button mat-raised-button (click)="spinWheel()">
+    SPIN WHEEL
+  </button>
+  <button mat-raised-button (click)="rotateWheel()">
+    ROTATE WHEEL
+  </button>

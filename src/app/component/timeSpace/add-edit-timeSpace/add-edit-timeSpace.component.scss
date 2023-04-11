@@ -1,0 +1,24 @@
+.content {
+    padding-top: 10px;
+  }
+  .rows {
+    display: flex;
+  }
+  .row {
+    flex-basis: 45%;
+    margin-top: 20px; 
+  }
+  .row-timeSpace {
+    padding-left: 10px;
+    width: 100%;
+    mat-form-field {
+      width: 100%;
+    }
+  }
+  
+  .action {
+    padding: 0px 25px 20px;
+    button {
+      flex: 1;
+    }
+  }

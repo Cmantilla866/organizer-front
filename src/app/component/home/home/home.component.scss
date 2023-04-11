@@ -1,0 +1,174 @@
+  .toDo-table{
+    margin-top: 1rem;
+    margin-left: 4rem;
+    width: 72%;
+  }
+  .task-body{
+    margin-top: 1rem;
+    width: 21%;
+  }
+  .time-space{
+    margin-top: 2.8rem;
+    margin-left: 4rem;
+  }
+  .random{
+    width: 49.1%;
+  }
+  
+  .rows {
+    width: 96.6%;
+    padding-left: 0px;
+    padding-top: 10px;
+    display: flex;
+    margin-left: 0rem;
+  }
+
+  .row {
+    width: 25%;
+    margin-top: 20px; 
+    padding-left: 10px;
+    mat-form-field {
+      width: 100%;
+    }
+  }
+
+  .category-random {
+    width: 100%;
+    margin-top: 20px; 
+    padding-left: 10px;
+    mat-form-field {
+      width: 100%;
+    }
+  }
+
+  .important-random {
+    width: 20%;
+    margin-top: 20px; 
+    padding-left: 10px;
+    mat-form-field {
+      width: 100%;
+    }
+  }
+  
+  .action {
+    padding: 29px 25px 0px 10px;
+    button {
+      flex: 1;
+    }
+  }
+
+  .action-tasks {
+    padding: 0px 7px 0px 7px;
+    button {
+      flex: 1;
+    }
+    display: inline-flex;
+  }
+
+  .rows-task {
+    padding-left: 0px;
+    padding-top: 10px;
+    margin-left: 1rem;
+  }
+
+  .rows-satisfactionLevel {
+    padding-left: 0px;
+    padding-top: 10px;
+    margin-left: 1rem;
+    margin-top: 3.4rem;
+  }
+
+  .light-border{
+    border: 2px solid 	#486581;
+    border-radius: 18px;
+  }
+
+  .dark-border{
+    border: 2px solid #829ab1;
+    border-radius: 18px;
+  }
+
+  .light-header {
+    position:absolute;
+    margin-top:-25px;
+    margin-left:10px;
+    color:white;
+    background:#263238;
+    border-radius:10px;
+    padding:2px 10px;
+  }
+
+  .dark-header {
+    position:absolute;
+    margin-top:-25px;
+    margin-left:10px;
+    color:white;
+    background:	#102a43;
+    border-radius:10px;
+    padding:2px 10px;
+  }
+
+  .description{
+    margin-top: 0px; 
+    padding-left: 10px ;
+
+    mat-form-field {
+      width: 95%;
+    }
+  }
+
+  .jumpStart{
+    padding-left: 10px ;
+    display: inline;
+
+    mat-form-field {
+      width: 70%;
+    }
+  }
+
+  .date{
+    padding-left: 10px ;
+    display: inline;
+
+    mat-form-field {
+      width: 81%;
+    }
+  }
+  
+
+  .level{
+    padding-left: 10px ;
+    display: inline;
+
+    mat-form-field {
+      width: 50%;
+    }
+  }
+
+
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+  
+  .main-body {
+    padding-top: 20px;
+    margin: 0 auto;
+    max-width: 1348px;
+    mat-form-field {
+      width: 100%;
+    }
+  }
+  
+  .main-toolbar {
+    margin: 0;
+    max-width: 1400px;
+    mat-form-field {
+      width: 100%;
+    }
+  }
+  
+  
+  .action {
+    display: flex;
+    gap: 5px;
+  }

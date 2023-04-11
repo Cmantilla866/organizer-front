@@ -1,0 +1,283 @@
+<div style="display: flex; margin-left: 4rem;">
+    <div class="random">
+        <form [formGroup]="includeForm" (ngSubmit)="onIncludeFormSubmit()">
+            <div mat-dialog-content>
+                <div class="rows" [class.light-border]="!darkMode" [class.dark-border]="darkMode">
+                    <div [class.light-header]="!darkMode" [class.dark-header]="darkMode">
+                        Get random To Do including the selected categories 
+                    </div>
+                    <div class="category-random">
+                        <mat-form-field>
+                            <mat-label>Categories</mat-label>
+                            <mat-select name="categoryIncludeVaraible" formControlName="categories" multiple>
+                                <mat-option *ngFor="let category of categories" [value]="category">
+                                {{category}}
+                                </mat-option>
+                            </mat-select>                                                                                   
+                        </mat-form-field>
+                    </div>
+
+                    <div class="action">
+                        <mat-checkbox matInput formControlName="important">Important</mat-checkbox>
+                    </div>
+    
+                    <div mat-dialog-actions class="action">
+                        <button mat-raised-button color="primary" type="submit">Save</button>
+                    </div>
+                </div>
+            </div>
+            
+        </form>
+    </div>
+    <div class="random">
+        <form [formGroup]="excludeForm" (ngSubmit)="onExcludeFormSubmit()">
+            <div mat-dialog-content>
+                <div class="rows" [class.light-border]="!darkMode" [class.dark-border]="darkMode">
+                    <div [class.light-header]="!darkMode" [class.dark-header]="darkMode">
+                        Get random To Do excluding the selected categories
+                    </div>
+                    <div class="category-random">
+                        <mat-form-field>
+                            <mat-label>Categories</mat-label>
+                            <mat-select name="categoryExcludeVaraible" formControlName="categories" multiple>
+                                <mat-option *ngFor="let category of categories" [value]="category">
+                                {{category}}
+                                </mat-option>
+                            </mat-select>                                                                                   
+                        </mat-form-field>
+                    </div>
+
+                    <div class="action">
+                        <mat-checkbox matInput formControlName="important">Important</mat-checkbox>
+                    </div>
+    
+                    <div mat-dialog-actions class="action">
+                        <button mat-raised-button color="primary" type="submit">Save</button>
+                    </div>
+                </div>
+            </div>
+            
+        </form>
+    </div>
+</div>
+<div style="display: flex;">
+    <div class="toDo-table">
+        <div class="main-toolbar">
+            <mat-toolbar color="primary">
+                <mat-label>{{ todayTime }}</mat-label>
+                <span class="example-spacer"></span>
+                <button mat-raised-button (click)="openAddEditEmpForm()">
+                ADD TO DO
+                </button>
+            </mat-toolbar>
+        </div>
+        <div class="main-body">
+            <table mat-table [dataSource]="dataSource">
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let myRowData; columns: displayedColumns"></tr>
+          
+              <ng-container matColumnDef="id">
+                  <th mat-header-cell *matHeaderCellDef> id </th>
+                  <td mat-cell *matCellDef="let toDo"> {{toDo.id}} </td>
+                </ng-container>
+              
+              <ng-container matColumnDef="name">
+                  <th mat-header-cell *matHeaderCellDef> Name </th>
+                  <td mat-cell *matCellDef="let toDo"> {{toDo.name}} </td>
+              </ng-container>
+          
+              <ng-container matColumnDef="description">
+                  <th mat-header-cell *matHeaderCellDef> Description </th>
+                  <td mat-cell *matCellDef="let toDo"> {{toDo.description}} </td>
+              </ng-container>
+          
+              <ng-container matColumnDef="jumpStart">
+                  <th mat-header-cell *matHeaderCellDef> JumpStart </th>
+                  <td mat-cell *matCellDef="let toDo"> {{toDo.jumpStart}} </td>
+              </ng-container>
+          
+              <ng-container matColumnDef="priority">
+                  <th mat-header-cell *matHeaderCellDef> Priority </th>
+                  <td mat-cell *matCellDef="let toDo"> {{toDo.priority}} </td>
+              </ng-container>
+          
+              <ng-container matColumnDef="deadline">
+                  <th mat-header-cell *matHeaderCellDef> Deadline </th>
+                  <td mat-cell *matCellDef="let toDo"> {{toDo.deadline?.split('T')[0]}} </td>
+              </ng-container>
+          
+              <ng-container matColumnDef="maxTime">
+                  <th mat-header-cell *matHeaderCellDef> MaxTime </th>
+                  <td mat-cell *matCellDef="let toDo"> {{toDo.maxTime}} </td>
+              </ng-container>
+          
+              <ng-container matColumnDef="categoryName">
+                  <th mat-header-cell *matHeaderCellDef> Category </th>
+                  <td mat-cell *matCellDef="let toDo"> {{toDo.categoryDTO.name}} </td>
+              </ng-container>
+          
+              <ng-container matColumnDef="action">
+                  <th mat-header-cell *matHeaderCellDef> Action </th>
+                  <td mat-cell *matCellDef="let row">
+                    <button mat-icon-button color="primary" (click)="openTaskList(row)">
+                      <i class="fal fa-list"></i>
+                    </button>
+                    <button mat-icon-button color="primary" (click)="openTimeSpaceList(row)">
+                      <i class="fal fa-clock"></i>
+                    </button>
+                    <button mat-icon-button color="primary" (click)="openEditForm(row)">
+                      <i class="fal fa-pen"></i>
+                    </button>
+                  </td>
+                </ng-container>
+                
+          </table>
+          </div>
+    </div>
+
+    <div class="task-body">
+        <form [formGroup]="taskForm" (ngSubmit)="onTaskFormSubmit()">
+            <div mat-dialog-content>
+                <div class="rows-task"  [class.light-border]="!darkMode" [class.dark-border]="darkMode">
+                    <div [class.light-header]="!darkMode" [class.dark-header]="darkMode">
+                        Add Task
+                    </div>
+                    <div class="description">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Name</mat-label>
+                            <input matInput type="text" placeholder="" formControlName="name">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="description">
+                        <mat-form-field>
+                            <mat-label>To Do</mat-label>
+                            <mat-select name="toDoReactiveVaraible" formControlName="toDoDTO">
+                                <mat-option *ngFor="let toDo of toDos" [value]="toDo">
+                                {{toDo.name}}
+                                </mat-option>
+                            </mat-select>                                                                                   
+                        </mat-form-field>
+                    </div>
+    
+                    <div class="description">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Description</mat-label>
+                            <input matInput type="text" placeholder="" formControlName="description">
+                        </mat-form-field>
+                    </div>
+    
+                    <div class="row-tasks">
+                        <div class="jumpStart">
+                            <mat-form-field appearance="outline">
+                                <mat-label>JumpStart</mat-label>
+                                <input matInput type="text" placeholder="" formControlName="jumpStart">
+                            </mat-form-field>
+                        </div>
+        
+                        <div mat-dialog-actions class="action-tasks">
+                            <button mat-raised-button color="primary" type="submit">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </form>
+
+        <form [formGroup]="satisfactionLevelForm" (ngSubmit)="onSatisfactionLevelFormSubmit()">
+            <div mat-dialog-content>
+                <div class="rows-satisfactionLevel"  [class.light-border]="!darkMode" [class.dark-border]="darkMode">
+                    <div [class.light-header]="!darkMode" [class.dark-header]="darkMode">
+                        Add Satisfaction Level
+                    </div>
+    
+                    <div class="row-tasks">
+                        <div class="date">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Date</mat-label>
+                                <input matInput [matDatepicker]="datePicker" formControlName="date" (dateChange)="getSatisfactionLevel()">
+                                <mat-datepicker-toggle matIconSuffix [for]="datePicker"></mat-datepicker-toggle>
+                                <mat-datepicker #datePicker></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+
+                        <button mat-icon-button style="margin-top: 10px;" color="primary" (click)="openTimeSpaceListByDate()">
+                            <i class="fal fa-clock"></i>
+                          </button>
+                    </div>
+                    
+
+                    <div class="row-tasks">
+                        <div class="jumpStart">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Level</mat-label>
+                                <input matInput type="number" placeholder="" formControlName="level">
+                            </mat-form-field>
+                        </div>
+
+                        <div mat-dialog-actions class="action-tasks">
+                            <button mat-raised-button color="primary" type="submit">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </form>
+    </div>
+</div>
+
+
+<div class="time-space">
+    <form [formGroup]="empForm" (ngSubmit)="onFormSubmit()">
+        <div mat-dialog-content>
+            <div class="rows" [class.light-border]="!darkMode" [class.dark-border]="darkMode">
+                <div [class.light-header]="!darkMode" [class.dark-header]="darkMode">
+                    Add Time Space
+                </div>
+                <div class="row">
+                    <mat-form-field>
+                        <mat-label>To Do</mat-label>
+                        <mat-select name="toDoReactiveVaraible" formControlName="toDoDTO" [(value)] = "selected" (selectionChange) = "onToDoSelected($event)">
+                            <mat-option *ngFor="let toDo of toDos" [value]="toDo">
+                            {{toDo.name}}
+                            </mat-option>
+                        </mat-select>                                                                                   
+                    </mat-form-field>
+                </div>
+
+                <div class="row">
+                    <mat-form-field>
+                        <mat-label>Task</mat-label>
+                        <mat-select name="taskReactiveVaraible" formControlName="taskDTO">
+                            <mat-option></mat-option>
+                            <mat-option *ngFor="let task of tasks" [value]="task">
+                            {{task.name}}
+                            </mat-option>
+                        </mat-select>                                                                                   
+                    </mat-form-field>
+                </div>
+    
+                <div class="row">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Date</mat-label>
+                        <input matInput [matDatepicker]="picker" formControlName="date">
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+    
+                <div class="row">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Time</mat-label>
+                        <input matInput type="number" placeholder="" formControlName="time">
+                    </mat-form-field>
+                </div>
+    
+                <div mat-dialog-actions class="action">
+                    <button mat-raised-button color="primary" type="submit">Save</button>
+                </div>
+            </div>
+        </div>
+        
+    </form>
+</div>

@@ -1,0 +1,51 @@
+<div mat-dialog-title>
+    <h1>TimeSpace Form</h1>
+</div>
+<form [formGroup]="empForm" (ngSubmit)="onFormSubmit()">
+    <div mat-dialog-content class="content">
+        <div class="rows">
+            <div class="row-timeSpace">
+                <mat-form-field>
+                    <mat-label>To Do</mat-label>
+                    <mat-select name="toDoReactiveVaraible" formControlName="toDoDTO" (selectionChange) = "onToDoSelected($event)">
+                        <mat-option *ngFor="let toDo of toDos" [value]="toDo">
+                        {{toDo.name}}
+                        </mat-option>
+                    </mat-select>                                                                                   
+                </mat-form-field>
+            </div>
+
+            <div class="row-timeSpace">
+                <mat-form-field>
+                    <mat-label>Task</mat-label>
+                    <mat-select name="taskReactiveVaraible" formControlName="taskDTO">
+                        <mat-option *ngFor="let task of tasks" [value]="task">
+                        {{task.name}}
+                        </mat-option>
+                    </mat-select>                                                                                   
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="rows">
+            <div class="row-timeSpace">
+                <mat-form-field appearance="outline">
+                    <mat-label>Date</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="date">
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </div>
+
+            <div class="row-timeSpace">
+                <mat-form-field appearance="outline">
+                    <mat-label>Time</mat-label>
+                    <input matInput type="number" placeholder="" formControlName="time">
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+    <div mat-dialog-actions class="action">
+        <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+        <button mat-raised-button color="primary" type="submit">{{data.data ? 'Update': 'Save'}}</button>
+    </div>
+</form>

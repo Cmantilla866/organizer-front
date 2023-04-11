@@ -1,0 +1,22 @@
+.content {
+    padding-top: 10px;
+  }
+  .rows {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+  .row {
+    display: flex;
+    margin-top: 8px; 
+    mat-form-field {
+      width: 100%;
+    }
+  }
+  
+  .action {
+    padding: 0px 25px 20px;
+    button {
+      flex: 1;
+    }
+  }
